@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101018">
+  <meta name="description" content="A fan-made Demon Slayer community.">
+  <title>Demon Slayer Fanbase</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icons/icon-192.png" type="image/png">
+  <style>
+    :root { color-scheme: dark; --bg:#101018; --panel:#20202c; --accent:#e84b62; --muted:#c7c7d1; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font-family:Arial, sans-serif; background:var(--bg); color:#fff; line-height:1.6; }
+    header { text-align:center; padding:22px 16px; background:#191923; border-bottom:2px solid #a52638; }
+    header h1 { margin:0; color:var(--accent); font-size:clamp(22px,4vw,32px); }
+    nav { display:flex; justify-content:center; flex-wrap:wrap; gap:20px; padding:14px; background:#20202c; }
+    nav a { color:#fff; text-decoration:none; font-weight:bold; }
+    nav a:hover, a:focus { color:var(--accent); }
+    .hero { min-height:350px; display:grid; place-content:center; text-align:center; padding:40px 20px; background:linear-gradient(135deg,#351521,#101018 60%,#18202c); }
+    .hero h2 { margin:0 0 12px; color:#f16a7b; font-size:clamp(34px,7vw,58px); }
+    .hero p { max-width:650px; margin:0 auto 22px; color:#ddd; }
+    .button { display:inline-block; border:0; border-radius:8px; padding:12px 20px; background:#b52d42; color:white; font-weight:bold; cursor:pointer; text-decoration:none; }
+    .button:hover { background:#e0475b; }
+    section { max-width:1050px; margin:auto; padding:48px 20px; }
+    section h2 { text-align:center; color:#f16a7b; margin:0 0 22px; }
+    .about { max-width:760px; margin:auto; text-align:center; color:var(--muted); }
+    .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:16px; }
+    .card, .auth-card { background:var(--panel); border:1px solid #393944; border-radius:12px; padding:22px; }
+    .card { text-align:center; }
+    .card h3 { color:#f16a7b; margin-top:0; }
+    .auth-card { max-width:440px; margin:auto; }
+    .auth-card h2 { margin-top:0; }
+    label { display:block; margin:12px 0 5px; color:#ddd; }
+    input { width:100%; padding:13px; border:1px solid #555565; border-radius:7px; background:#101018; color:white; font-size:16px; }
+    .auth-actions { display:grid; gap:10px; margin-top:16px; }
+    .auth-actions button { width:100%; }
+    .text-button { background:none; border:0; color:#ff9aaa; text-decoration:underline; cursor:pointer; padding:8px; font-size:14px; }
+    #auth-status { text-align:center; color:#ff9aaa; overflow-wrap:anywhere; }
+    #message { min-height:24px; margin:12px 0 0; text-align:center; overflow-wrap:anywhere; color:#ffd0d7; }
+    #message.success { color:#a6e6bd; }
+    [hidden] { display:none !important; }
+    footer { margin-top:30px; padding:24px 16px; text-align:center; background:#191923; color:#aaa; font-size:13px; }
+    @media(max-width:520px) { nav { gap:12px; } nav a { font-size:14px; } .hero { min-height:310px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DEMON SLAYER FANBASE</h1>
+    <p>A fan-made community for Demon Slayer fans</p>
+  </header>
+
+  <nav aria-label="Main navigation">
+    <a href="#home">Home</a><a href="#about">About</a>
+    <a href="#characters">Characters</a><a href="#account">Account</a>
+  </nav>
+
+  <main>
+    <div class="hero" id="home">
+      <h2>Welcome, Slayer!</h2>
+      <p>Explore the world of Demon Slayer and connect with fellow fans.</p>
+      <a class="button" href="#characters">Explore characters</a>
+    </div>
+
+    <section id="about">
+      <h2>About the fanbase</h2>
+      <p class="about">Demon Slayer Fanbase is a fan-made community dedicated to Kimetsu no Yaiba. Whether you're a longtime fan or just getting started, you're welcome here.</p>
+    </section>
+
+    <section id="characters">
+      <h2>Featured characters</h2>
+      <div class="cards">
+        <article class="card"><h3>Tanjiro Kamado</h3><p>A determined Demon Slayer.</p></article>
+        <article class="card"><h3>Nezuko Kamado</h3><p>Tanjiro's younger sister.</p></article>
+        <article class="card"><h3>Muichiro Tokito</h3><p>The Mist Hashira.</p></article>
+        <article class="card"><h3>Zenitsu Agatsuma</h3><p>A Thunder Breathing swordsman.</p></article>
+      </div>
+    </section>
+
+    <section id="account">
+      <div class="auth-card">
+        <h2>Slayer account</h2>
+        <p id="auth-status" aria-live="polite">Checking sign-in status…</p>
+
+        <div id="signed-out">
+          <label for="email">Email address</label>
+          <input id="email" type="email" autocomplete="email" placeholder="you@example.com">
+          <label for="password">Password</label>
+          <input id="password" type="password" autocomplete="current-password" placeholder="At least 6 characters">
+          <div class="auth-actions">
+            <button class="button" id="login-btn" type="button">Log in</button>
+            <button class="button" id="register-btn" type="button">Create account</button>
+            <button class="text-button" id="reset-btn" type="button">Forgot password?</button>
+          </div>
+        </div>
+
+        <div id="signed-in" hidden>
+          <p id="account-email"></p>
+          <div class="auth-actions"><button class="button" id="logout-btn" type="button">Log out</button></div>
+        </div>
+        <p id="message" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Demon Slayer Fanbase</p>
+    <p>Fan-made project. Not affiliated with or endorsed by the official franchise.</p>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+    import {
+      getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+      signOut, onAuthStateChanged, sendPasswordResetEmail
+    } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyARhibIwIKQ_r5tDahXUOYStmCx2OrFwfU",
+      authDomain: "mdsf-1bdf3.firebaseapp.com",
+      projectId: "mdsf-1bdf3",
+      storageBucket: "mdsf-1bdf3.firebasestorage.app",
+      messagingSenderId: "289401878918",
+      appId: "1:289401878918:web:221fbe017998adeb9dd407",
+      measurementId: "G-1XDQTDWHZ6"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const $ = (id) => document.getElementById(id);
+    const emailInput = $("email");
+    const passwordInput = $("password");
+
+    function showMessage(message, success = false) {
+      $("message").textContent = message;
+      $("message").className = success ? "success" : "";
+    }
+
+    function getCredentials() {
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+      if (!email || !password) throw new Error("Enter your email and password.");
+      return { email, password };
+    }
+
+    $("register-btn").addEventListener("click", async () => {
+      try {
+        const { email, password } = getCredentials();
+        await createUserWithEmailAndPassword(auth, email, password);
+        showMessage("Account created successfully!", true);
+      } catch (error) {
+        showMessage(error.message);
+      }
+    });
+
+    $("login-btn").addEventListener("click", async () => {
+      try {
+        const { email, password } = getCredentials();
+        await signInWithEmailAndPassword(auth, email, password);
+        showMessage("You're signed in!", true);
+      } catch (error) {
+        showMessage(error.message);
+      }
+    });
+
+    $("logout-btn").addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        showMessage("You have logged out.", true);
+      } catch (error) {
+        showMessage(error.message);
+      }
+    });
+
+    $("reset-btn").addEventListener("click", async () => {
+      try {
+        const email = emailInput.value.trim();
+        if (!email) throw new Error("Enter your email address first.");
+        await sendPasswordResetEmail(auth, email);
+        showMessage("If an account exists for that address, a reset email will be sent.", true);
+      } catch (error) {
+        showMessage(error.message);
+      }
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      $("signed-out").hidden = !!user;
+      $("signed-in").hidden = !user;
+      $("auth-status").textContent = user ? "Signed in" : "Not signed in";
+      $("account-email").textContent = user ? `Signed in as ${user.email}` : "";
+    });
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch((error) => {
+          console.error("Service worker registration failed:", error);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
