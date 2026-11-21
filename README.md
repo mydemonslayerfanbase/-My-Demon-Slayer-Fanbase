@@ -27,7 +27,7 @@ https://tr.ee/Aws0tD
 
 👥 Assistant Team
 
-- Sara — Assistant
+- Sara — sjohnson@muse.ai
 
 ⚠️ Disclaimer
 
