@@ -7,7 +7,7 @@ An unofficial fan-made website dedicated to Demon Slayer: Kimetsu no Yaiba.
 
 🌐 Website
 
-https://mydemonslayerfanbase.github.io
+https://tr.ee/Aws0tD
 
 📌 Features
 
